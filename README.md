@@ -6,6 +6,8 @@
 
 ## Installation
 
+[Follow the official instructions](https://home-assistant.io/hassio/installing_third_party_addons/) and use the following URL:
+
     https://github.com/olivierguerriat/hassio-addons
 
 ## Acknowledgments
