@@ -13,3 +13,5 @@
 ## Acknowledgments
 
 The build script and Travis config come straight from [bestlibre's repository](https://github.com/bestlibre/hassio-addons), thank you!
+
+(but my Dockerfile makes Travis hang, for some reasons)

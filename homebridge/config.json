@@ -6,7 +6,6 @@
   "url": "https://github.com/olivierguerriat/hassio-addons",
   "startup": "after",
   "boot": "auto",
-  "image": "olivierguerriat/{arch}-homebridge",
   "options": {
     "plugins": []
   },

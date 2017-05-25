@@ -7,4 +7,4 @@ env:
   - ADDON="homebridge"
 script:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - travis_wait 30 ./build.sh $ADDON
+  - ./build.sh $ADDON
