@@ -1,3 +1,4 @@
+
 CONFIG_PATH=/data/options.json
 HOMEBRIDGE_BASE_CONFIG_PATH=/etc/homebridge-base-config.json
 

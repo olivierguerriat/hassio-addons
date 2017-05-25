@@ -5,7 +5,7 @@ The [Homebridge](https://github.com/nfarina/homebridge) config folder is in the 
 
 ## Installation
 
-1. [Add my add-on repository to your Hass.io installation](https://github.com/olivierguerriat/hassio-addons)
+1. [Add my add-on repository to your Hass.io installation](https://github.com/olivierguerriat/hassio-addons#installation)
 2. Install the "Homebridge" add-on
 3. Start the "Homebridge" add-on
 4. In the Home app (on your iPhone), add an accessory. "Home Assistant" should show up in the list. The default PIN code is `031-45-154`.
