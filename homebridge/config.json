@@ -1,0 +1,17 @@
+{
+  "name": "Homebridge",
+  "version": "0.1",
+  "slug": "homebridge",
+  "description": "Homebridge for Home Assistant",
+  "url": "https://github.com/olivierguerriat/hassio-addons",
+  "startup": "after",
+  "boot": "auto",
+  "options": {
+    "plugins": []
+  },
+  "schema": {
+    "plugins": ["str"]
+  },
+  "map": ["config:rw"],
+  "host_network": true
+}
