@@ -1,8 +1,6 @@
-# hassio-addons
+# Hass.io Add-Ons
 
-## Add-Ons
-
-* [Homebridge](https://github.com/olivierguerriat/hassio-addons/tree/master/homebridge)
+* [Homebridge](https://github.com/olivierguerriat/hassio-addons/tree/master/homebridge) (WIP, does not work yet)
 
 ## Installation
 

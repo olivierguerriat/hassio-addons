@@ -1,5 +1,5 @@
 
-# Homebridge Add-On for Hass.io
+# Homebridge Add-On for Hass.io  (WIP, does not work yet)
 
 The [Homebridge](https://github.com/nfarina/homebridge) config folder is in the Home Assistant config folder (`/config/homebridge`) that you can access via SSH, Samba…
 
