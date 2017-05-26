@@ -4,6 +4,7 @@
   "slug": "homebridge",
   "description": "Homebridge for Home Assistant",
   "url": "https://github.com/olivierguerriat/hassio-addons",
+  "image": "olivierguerriat/hassio-addon-homebridge-{arch}",
   "startup": "after",
   "boot": "auto",
   "options": {

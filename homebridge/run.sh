@@ -19,7 +19,7 @@ fi
 
 sed -i "s/rlimit-nproc=3/#rlimit-nproc=3/" /etc/avahi/avahi-daemon.conf
 
-jq --raw-output ".plugins[]" $CONFIG_PATH | while read p; do echo "Ensuring $p is installed…"; npm install -g $p; done
+jq --raw-output ".plugins[]" $CONFIG_PATH | while read p; do echo "Ensuring $p is installed…"; npm install -g --unsafe-perm $p; done
 
 echo "Launching DBUS daemon…"
 dbus-daemon --system
