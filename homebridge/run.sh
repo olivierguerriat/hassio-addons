@@ -18,6 +18,7 @@ if [ ! -d ~/.homebridge ]; then
 fi
 
 sed -i "s/rlimit-nproc=3/#rlimit-nproc=3/" /etc/avahi/avahi-daemon.conf
+sed -i "/^use-ipv6=/s/=.*/=no/" /etc/avahi/avahi-daemon.conf
 
 jq --raw-output ".plugins[]" $CONFIG_PATH | while read p; do echo "Ensuring $p is installed…"; npm install -g $p; done
 
