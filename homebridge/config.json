@@ -1,9 +1,10 @@
 {
   "name": "Homebridge",
-  "version": "0.4",
+  "version": "0.3",
   "slug": "homebridge",
   "description": "[deprecated] please use https://github.com/hassio-addons/repository/tree/master/homebridge instead",
   "url": "https://github.com/olivierguerriat/hassio-addons/tree/master/homebridge",
+  "image": "olivierguerriat/hassio-addon-homebridge-{arch}",
   "startup": "after",
   "boot": "auto",
   "options": {
