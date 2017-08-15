@@ -1,4 +1,5 @@
 {
   "name": "Olivier's Add-Ons",
-  "url": "https://github.com/olivierguerriat/hassio-addons"
+  "url": "https://github.com/olivierguerriat/hassio-addons",
+  "maintainer": "Olivier Guerriat <hassio@guerriat.be>"
 }
