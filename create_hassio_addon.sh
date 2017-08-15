@@ -2,9 +2,10 @@
 set -e
 
 BUILD_CONTAINER_NAME=hassio-addons-$$
-DOCKER_PUSH="false"
+DOCKER_PUSH="true"
 DOCKER_CACHE="true"
-BRANCH=build
+DOCKER_WITH_LATEST="true"
+BRANCH=master
 REPOSITORY=https://github.com/home-assistant/hassio-addons
 
 cleanup() {
@@ -41,8 +42,8 @@ Options:
 
     -a, --arch armhf|aarch64|i386|amd64
         Arch for addon build.
-    -p, --push
-        Upload the build to docker hub.
+    -t, --test
+        Don't upload the build to docker hub.
     -n, --no-cache
         Disable build from cache
 EOF
@@ -76,8 +77,8 @@ while [[ $# -gt 0 ]]; do
             ARCH=$2
             shift
             ;;
-        -p|--push)
-            DOCKER_PUSH="true"
+        -t|--test)
+            DOCKER_PUSH="false"
             ;;
         -n|--no-cache)
             DOCKER_CACHE="false"
@@ -106,7 +107,7 @@ pushd "$(dirname "$0")" > /dev/null 2>&1
 SCRIPTPATH=$(pwd)
 popd > /dev/null 2>&1
 
-BASE_IMAGE="resin\/$ARCH-alpine:3.5"
+BASE_IMAGE="homeassistant\/$ARCH-base:latest"
 BUILD_DIR=${BUILD_DIR:=$SCRIPTPATH}
 WORKSPACE=${BUILD_DIR:=$SCRIPTPATH}/hassio-supervisor-$ARCH
 ADDON_WORKSPACE=$WORKSPACE/$SLUG
@@ -134,11 +135,13 @@ echo "[INFO] Setup dockerfile"
 sed -i "s/{arch}/${ARCH}/g" "$ADDON_WORKSPACE/config.json"
 DOCKER_TAG=$(jq --raw-output ".version" "$ADDON_WORKSPACE/config.json")
 
-# if set custom image in file
+# If set custom image in file
 DOCKER_IMAGE=$(jq --raw-output ".image // empty" "$ADDON_WORKSPACE/config.json")
 
+# Replace hass.io vars
 sed -i "s/%%BASE_IMAGE%%/${BASE_IMAGE}/g" "$ADDON_WORKSPACE/Dockerfile"
-sed -i "s/%%VERSION%%/${DOCKER_TAG}/g" "$ADDON_WORKSPACE/Dockerfile"
+sed -i "s/#${ARCH}:FROM/FROM/g" "$ADDON_WORKSPACE/Dockerfile"
+sed -i "s/%%ARCH%%/${ARCH}/g" "$ADDON_WORKSPACE/Dockerfile"
 echo "LABEL io.hass.version=\"$DOCKER_TAG\" io.hass.arch=\"$ARCH\" io.hass.type=\"addon\"" >> "$ADDON_WORKSPACE/Dockerfile"
 
 # Run build
@@ -150,6 +153,7 @@ docker run --rm \
     -v ~/.docker:/root/.docker \
     -e DOCKER_PUSH=$DOCKER_PUSH \
     -e DOCKER_CACHE=$DOCKER_CACHE \
+    -e DOCKER_WITH_LATEST=$DOCKER_WITH_LATEST \
     -e DOCKER_IMAGE="$DOCKER_IMAGE" \
     -e DOCKER_TAG="$DOCKER_TAG" \
     --name $BUILD_CONTAINER_NAME \
